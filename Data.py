@@ -7,6 +7,7 @@
 
 import csv
 from multidict import MultiDict
+import pandas as pd
 
 # Reads in a csv file and adds the values to a multi-dictionary using the column headers as keys
 def readCSV(csvfile):
@@ -27,7 +28,16 @@ def readCSV(csvfile):
         print(f'Processed {line_count} lines.')
         print(f'The {fields[1]} field contains {len(multdict.getall(fields[1]))} values')
         print(f'The {fields[-1]} field contains {len(multdict.getall(fields[1]))} values')
-    return multdict
+
+
+        df = pd.DataFrame()
+        print(multdict.keys())
+        x = False
+        for key in multdict.keys():
+            if x == True:
+                df[key] = multdict.getall(key)
+            x = True
+    return df
 
 
 
