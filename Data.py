@@ -8,7 +8,7 @@
 import csv
 from multidict import MultiDict
 
-
+# Reads in a csv file and adds the values to a multi-dictionary using the column headers as keys
 def readCSV(csvfile):
     multdict = MultiDict()
     with open(csvfile, 'r') as file:
