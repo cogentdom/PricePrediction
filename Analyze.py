@@ -5,6 +5,8 @@ import numpy as np
 import pandas as pd
 
 
-class Graph:
-    def plotCorrelationMatrix(self):
-        testData = Data.readCSV('test-CarData.csv')
+def plotCorrelationMatrix():
+    testData = Data.readCSV('test-CarData.csv')
+
+
+plotCorrelationMatrix()
