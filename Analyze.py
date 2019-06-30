@@ -5,8 +5,8 @@ import numpy as np
 import pandas as pd
 import seaborn as sns
 
-
-# import csv
+# Clean Graph Code:
+# https://scentellegher.github.io/visualization/2018/10/10/beautiful-bar-plots-matplotlib.html
 
 
 # Distribution graphs (histogram/bar graph) of column data
@@ -34,7 +34,8 @@ def plotPerColumnDistribution(df, nGraphShown, nGraphPerRow):
     plt.tight_layout(pad = 1.0, w_pad = 1.0, h_pad = 1.0)
     plt.show()
 
-
+# correlations <- cor(train[,c(5,6,7,8, 26:35)], use="everything")
+# corrplot(correlations, method="circle", type="lower",  sig.level = 0.01, insig = "blank")
 def plotheatmap(df):
     df = df.dropna('columns')  # drop columns with NaN
     df = df[[col for col in df if df[col].nunique() > 1]]  # keep columns where there are more than 1 unique values
@@ -76,7 +77,9 @@ def plotScatterMatrix(df, plotSize, textSize):
 
 
 # testData = Data.readCSV('test-CarData.csv')
-data = pd.read_csv('test-CarData.csv')
-plotPerColumnDistribution(data, 10, 5)
+# data = pd.read_csv('train-CarData.csv')
+data = pd.read_csv('train-houses.csv')
+
+# plotPerColumnDistribution(data, 10, 5)
 # plotheatmap(data)
 # plotScatterMatrix(data, 9, 10)
