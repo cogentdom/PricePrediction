@@ -4,6 +4,8 @@
 # https://www.kaggle.com/c/house-prices-advanced-regression-techniques/overview
 # Machine Learning Course:
 # https://www.kaggle.com/learn/intro-to-machine-learning
+# Pandas Tutorial
+# https://www.kaggle.com/learn/pandas
 
 import csv
 from multidict import MultiDict
