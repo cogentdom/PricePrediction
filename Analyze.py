@@ -55,6 +55,8 @@ def plotheatmap(df):
                 yticklabels=corr.columns)
     plt.show()
 
+
+# Plots lower triangle heatmap
 def plotcorrmatrix(df):
     sns.set(style="white")
 
