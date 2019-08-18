@@ -19,31 +19,7 @@
        180	PUD - MULTILEVEL - INCL SPLIT LEV/FOYER
        190	2 FAMILY CONVERSION - ALL STYLES AND AGES
 
-2 => MSZoning: Identifies the general zoning classification of the sale.
 
-       A	Agriculture
-       C	Commercial
-       FV	Floating Village Residential
-       I	Industrial
-       RH	Residential High Density
-       RL	Residential Low Density
-       RP	Residential Low Density Park
-       RM	Residential Medium Density
-
-3 => LotFrontage: Linear feet of street connected to property
-
-4 => LotArea: Lot size in square feet
-
-5 => Street: Type of road access to property
-
-       Grvl	Gravel
-       Pave	Paved
-
-6 => Alley: Type of alley access to property
-
-       Grvl	Gravel
-       Pave	Paved
-       NA 	No alley access
 
 7 => LotShape: General shape of property
 
@@ -59,20 +35,6 @@
        HLS	Hillside - Significant slope from side to side
        Low	Depression
 
-9 => Utilities: Type of utilities available
-
-       AllPub	All public Utilities (E,G,W,& S)
-       NoSewr	Electricity, Gas, and Water (Septic Tank)
-       NoSeWa	Electricity and Gas Only
-       ELO	Electricity only
-
-10 => LotConfig: Lot configuration
-
-       Inside	Inside lot
-       Corner	Corner lot
-       CulDSac	Cul-de-sac
-       FR2	Frontage on 2 sides of property
-       FR3	Frontage on 3 sides of property
 
 11 => LandSlope: Slope of property
 
@@ -151,35 +113,10 @@
        SFoyer	Split Foyer
        SLvl	Split Level
 
-17 => OverallQual: Rates the overall material and finish of the house
 
-       10	Very Excellent
-       9	Excellent
-       8	Very Good
-       7	Good
-       6	Above Average
-       5	Average
-       4	Below Average
-       3	Fair
-       2	Poor
-       1	Very Poor
-
-18 => OverallCond: Rates the overall condition of the house
-
-       10	Very Excellent
-       9	Excellent
-       8	Very Good
-       7	Good
-       6	Above Average
-       5	Average
-       4	Below Average
-       3	Fair
-       2	Poor
-       1	Very Poor
 
 19 => YearBuilt: Original construction date
 
-20 => YearRemodAdd: Remodel date (same as construction date if no remodeling or additions)
 
 21 => RoofStyle: Type of roof
 
@@ -190,16 +127,7 @@
        Mansard	Mansard
        Shed	Shed
 
-22 => RoofMatl: Roof material
 
-       ClyTile	Clay or Tile
-       CompShg	Standard (Composite) Shingle
-       Membran	Membrane
-       Metal	Metal
-       Roll	Roll
-       Tar&Grv	Gravel & Tar
-       WdShake	Wood Shakes
-       WdShngl	Wood Shingles
 
 23 => Exterior1st: Exterior covering on house
 
@@ -241,31 +169,9 @@
        Wd Sdng	Wood Siding
        WdShing	Wood Shingles
 
-25 => MasVnrType: Masonry veneer type
 
-       BrkCmn	Brick Common
-       BrkFace	Brick Face
-       CBlock	Cinder Block
-       None	None
-       Stone	Stone
 
-26 => MasVnrArea: Masonry veneer area in square feet
 
-27 => ExterQual: Evaluates the quality of the material on the exterior
-
-       Ex	Excellent
-       Gd	Good
-       TA	Average/Typical
-       Fa	Fair
-       Po	Poor
-
-28 => ExterCond: Evaluates the present condition of the material on the exterior
-
-       Ex	Excellent
-       Gd	Good
-       TA	Average/Typical
-       Fa	Fair
-       Po	Poor
 
 29 => Foundation: Type of foundation
 
@@ -330,47 +236,13 @@
 
 38 => TotalBsmtSF: Total square feet of basement area
 
-39 => Heating: Type of heating
 
-       Floor	Floor Furnace
-       GasA	Gas forced warm air furnace
-       GasW	Gas hot water or steam heat
-       Grav	Gravity furnace
-       OthW	Hot water or steam heat other than gas
-       Wall	Wall furnace
 
-40 => HeatingQC: Heating quality and condition
 
-       Ex	Excellent
-       Gd	Good
-       TA	Average/Typical
-       Fa	Fair
-       Po	Poor
 
-41 => CentralAir: Central air conditioning
-
-       N	No
-       Y	Yes
-
-42 => Electrical: Electrical system
-
-       SBrkr	Standard Circuit Breakers & Romex
-       FuseA	Fuse Box over 60 AMP and all Romex wiring (Average)
-       FuseF	60 AMP Fuse Box and mostly Romex wiring (Fair)
-       FuseP	60 AMP Fuse Box and mostly knob & tube wiring (poor)
-       Mix	Mixed
-
-43 => 1stFlrSF: First Floor square feet
-
-44 =>2ndFlrSF: Second floor square feet
-
-45 =>LowQualFinSF: Low quality finished square feet (all floors)
 
 46 =>GrLivArea: Above grade (ground) living area square feet
 
-47 => BsmtFullBath: Basement full bathrooms
-
-48 => BsmtHalfBath: Basement half bathrooms
 
 49 => FullBath: Full bathrooms above grade
 
@@ -390,27 +262,6 @@
 
 54 => TotRmsAbvGrd: Total rooms above grade (does not include bathrooms)
 
-55 => Functional: Home functionality (Assume typical unless deductions are warranted)
-
-       Typ	Typical Functionality
-       Min1	Minor Deductions 1
-       Min2	Minor Deductions 2
-       Mod	Moderate Deductions
-       Maj1	Major Deductions 1
-       Maj2	Major Deductions 2
-       Sev	Severely Damaged
-       Sal	Salvage only
-
-56 => Fireplaces: Number of fireplaces
-
-57 => FireplaceQu: Fireplace quality
-
-       Ex	Excellent - Exceptional Masonry Fireplace
-       Gd	Good - Masonry Fireplace in main level
-       TA	Average - Prefabricated Fireplace in main living area or Masonry Fireplace in basement
-       Fa	Fair - Prefabricated Fireplace in basement
-       Po	Poor - Ben Franklin Stove
-       NA	No Fireplace
 
 58 => GarageType: Garage location
 
@@ -433,51 +284,10 @@
 
 61 => GarageCars: Size of garage in car capacity
 
-62 => GarageArea: Size of garage in square feet
 
-63 => GarageQual: Garage quality
 
-       Ex	Excellent
-       Gd	Good
-       TA	Typical/Average
-       Fa	Fair
-       Po	Poor
-       NA	No Garage
 
-64 => GarageCond: Garage condition
 
-       Ex	Excellent
-       Gd	Good
-       TA	Typical/Average
-       Fa	Fair
-       Po	Poor
-       NA	No Garage
-
-65 => PavedDrive: Paved driveway
-
-       Y	Paved
-       P	Partial Pavement
-       N	Dirt/Gravel
-
-66 => WoodDeckSF: Wood deck area in square feet
-
-67 => OpenPorchSF: Open porch area in square feet
-
-68 => EnclosedPorch: Enclosed porch area in square feet
-
-69 => 3SsnPorch: Three season porch area in square feet
-
-70 => ScreenPorch: Screen porch area in square feet
-
-71 => PoolArea: Pool area in square feet
-
-72 => PoolQC: Pool quality
-
-       Ex	Excellent
-       Gd	Good
-       TA	Average/Typical
-       Fa	Fair
-       NA	No Pool
 
 73 => Fence: Fence quality
 
@@ -496,32 +306,11 @@
        TenC	Tennis Court
        NA	None
 
-75 => MiscVal: $Value of miscellaneous feature
+
 
 76 => MoSold: Month Sold (MM)
 
 77 => YrSold: Year Sold (YYYY)
 
-78 => SaleType: Type of sale
-
-       WD 	Warranty Deed - Conventional
-       CWD	Warranty Deed - Cash
-       VWD	Warranty Deed - VA Loan
-       New	Home just constructed and sold
-       COD	Court Officer Deed/Estate
-       Con	Contract 15% Down payment regular terms
-       ConLw	Contract Low Down payment and low interest
-       ConLI	Contract Low Interest
-       ConLD	Contract Low Down
-       Oth	Other
-
-79 => SaleCondition: Condition of sale
-
-       Normal	Normal Sale
-       Abnorml	Abnormal Sale -  trade, foreclosure, short sale
-       AdjLand	Adjoining Land Purchase
-       Alloca	Allocation - two linked properties with separate deeds, typically condo with a garage unit
-       Family	Sale between family members
-       Partial	Home was not completed when last assessed (associated with New Homes)
 
 80 => SalePrice
