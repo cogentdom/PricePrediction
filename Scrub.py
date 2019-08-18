@@ -1,6 +1,13 @@
 import csv
 import pandas as pd
+from sklearn.preprocessing import LabelEncoder
 from Analyze import *
+
+def categTOnumeric(df_, features_):
+    lb= LabelEncoder()
+    for i in range(len(features_)):
+        lb.fit(df_[features_[i]].astype('str'))
+        df_[features_[i]]= lb.transform(df_[features_[i]].astype('str'))
 
 
 def interact_cat_con(dataframe, cat_col, con_col):
@@ -39,7 +46,7 @@ def scrub_dataset(data_dirty):
                          'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea', 'PoolQC', 'SaleType', 'SaleCondition']]
         indep_var = False
 
-
+    plotcorrmatrix(data_scrubbed)
     ###################
     # Clean up variables
     ###################
@@ -76,6 +83,7 @@ def scrub_dataset(data_dirty):
     data_scrubbed["Age"] = 2019 - data_scrubbed.YearRemodAdd
     data_scrubbed = data_scrubbed.drop(columns='YearRemodAdd')
 
+
     ###################
     # Create interaction variables
     ###################
@@ -104,6 +112,10 @@ def scrub_dataset(data_dirty):
     # Creates dummies for ExterQual
     data_scrubbed = make_categor_dum_var(data_scrubbed, 'ExterQual')
     # Creates dummies for HeatingQC
+
+
+
+
     data_scrubbed = make_categor_dum_var(data_scrubbed, 'HeatingQC')
     # Creates dummies for CentralAir
     data_scrubbed = make_categor_dum_var(data_scrubbed, 'CentralAir')
@@ -118,11 +130,21 @@ def scrub_dataset(data_dirty):
 
     return data_scrubbed
 
+def hand_made_scrub(dirty_data, dum_vars):
+    tmpList = list(dirty_data.columns)
+    tmpList.remove('SalePrice')
 
-
+    for col in tmpList:
+        dirty_data[col] = dirty_data[col].fillna(value=0)
+    data_scrubbed = dirty_data.dropna()
+    for cat in dum_vars:
+        data_scrubbed = make_categor_dum_var(data_scrubbed, cat)
+    return data_scrubbed
 
 # data_train = pd.read_csv('train-houses.csv')
 # data_clean_train = scrub_dataset(data_train)
+
+
 # Analyze.plotcormatrix(data_filtered)
 # print(data_clean_train.loc[:20, ['Family', 'Normal', 'N', 'WD']])
 # print(df.iloc[:,:].head())

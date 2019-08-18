@@ -338,7 +338,7 @@
        Unf	Unfinished
        NA	No Garage
 
-61 => GarageCars: Size of garage in car capacity
+
 
 
 

@@ -106,6 +106,8 @@
        Po	Poor - Ben Franklin Stove
        NA	No Fireplace
 
+61 => GarageCars: Size of garage in car capacity
+
 62 => GarageArea: Size of garage in square feet
 
 63 => GarageQual: Garage quality
