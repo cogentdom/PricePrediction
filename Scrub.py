@@ -2,47 +2,130 @@ import csv
 import pandas as pd
 from Analyze import *
 
-data_train = pd.read_csv('train-houses.csv')
-# print(data_train['2ndFlrSF'].describe())
-# print(data_train.head(50).iloc[:, 66:71])
 
-data_filtered = data_train.loc[:, ['MSZoning', 'LotArea', 'Utilities', 'OverallQual', 'YearRemodAdd', 'RoofMatl', 'MasVnrType', 'MasVnrArea', 'ExterQual', 'ExterCond', 'Heating', 'HeatingQC', 'CentralAir', 'Electrical', '1stFlrSF', '2ndFlrSF', 'Functional', 'Fireplaces', 'FireplaceQu', 'GarageArea', 'GarageQual', 'PavedDrive', 'WoodDeckSF', 'OpenPorchSF', 'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea', 'PoolQC', 'SaleType', 'SaleCondition', 'SalePrice']]
+def interact_cat_con(dataframe, cat_col, con_col):
+    df = pd.get_dummies(dataframe[cat_col])
+    dataframe = pd.concat([dataframe, df], axis='columns')
+    for col in df.columns:
+        dataframe[col + "_x_" + con_col] = dataframe[col] * dataframe[con_col]
+        dataframe = dataframe.drop(col, axis='columns')
+    if len(df.columns) == len(dataframe[cat_col].unique()):
+        dataframe = dataframe.drop([df.columns[0] + '_x_' + con_col], axis='columns')
+    dataframe = dataframe.drop(cat_col, axis='columns')
+    return dataframe
 
-# Creates new feature which represents square footage of any type of deck combines ('WoodDeckSF', 'OpenPorchSF', 'EnclosedPorch', '3SsnPorch', 'ScreenPorch')
-data_filtered['PorchVal'] = data_filtered.WoodDeckSF + data_filtered.OpenPorchSF + data_filtered.EnclosedPorch + data_filtered['3SsnPorch'] + data_filtered.ScreenPorch
-data_filtered = data_filtered.drop(columns=['WoodDeckSF', 'OpenPorchSF', 'EnclosedPorch', '3SsnPorch', 'ScreenPorch'])
+def make_categor_dum_var(dataframe, col_name):
+    df = pd.get_dummies(dataframe[col_name])
+    dataframe = pd.concat([dataframe, df], axis='columns')
+    if len(df.columns) == len(dataframe[col_name]):
+        dataframe = dataframe.drop(columns = df.columns[0])
+    dataframe = dataframe.drop(columns = col_name)
+    return dataframe
 
-# Creates new feature which represents the square feet of the first and second floor, combines('1stFlrSF', '2ndFlrSF')
-data_filtered['FloorSF'] = data_filtered['1stFlrSF'] + data_filtered['2ndFlrSF']
-data_filtered = data_filtered.drop(columns=['1stFlrSF', '2ndFlrSF'])
-
-# analyze = Analyze.plotcorrmatrix()
-plotcorrmatrix(data_filtered)
-print(data_filtered.columns)
-
-
-# Creates dummies of MSZoning and multipies them by LotArea
-df = pd.get_dummies(data_filtered.MSZoning) # ['RL' 'RM' 'C (all)' 'FV' 'RH']
-data_filtered = pd.concat([data_filtered, df], axis='columns')
-for col in df.columns:
-    data_filtered[col + "_x_LotArea"] = data_filtered[col] * data_filtered.LotArea
-    data_filtered = data_filtered.drop(col, axis='columns')
-data_filtered = data_filtered.drop(['MSZoning', df.columns[0] + '_x_LotArea'], axis='columns')
-
-# Creates dummies of OverallQual
-df = pd.get_dummies(data_filtered.OverallQual)
-data_filtered = pd.concat([data_filtered, df], axis='columns')
-data_filtered = data_filtered.drop(['OverallQual', df.columns[0]], axis='columns')
-
-
-# Creates a variable to measure age
-data_filtered["Age"] = 2019 - data_filtered.YearRemodAdd
-data_filtered = data_filtered.drop(columns = 'YearRemodAdd')
+def scrub_dataset(data_dirty):
+    if 'SalePrice' in data_dirty:
+        data_scrubbed = data_dirty.loc[:,
+                        ['MSZoning', 'LotArea', 'Utilities', 'OverallQual', 'YearRemodAdd', 'MasVnrType', 'MasVnrArea',
+                         'ExterQual', 'HeatingQC', 'CentralAir', '1stFlrSF', '2ndFlrSF', 'Functional', 'Fireplaces',
+                         'FireplaceQu', 'GarageArea', 'GarageQual', 'PavedDrive', 'WoodDeckSF', 'OpenPorchSF',
+                         'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea', 'PoolQC', 'SaleType', 'SaleCondition',
+                         'SalePrice']]
+        indep_var = True
+    else:
+        data_scrubbed = data_dirty.loc[:,
+                        ['MSZoning', 'LotArea', 'Utilities', 'OverallQual', 'YearRemodAdd', 'MasVnrType', 'MasVnrArea',
+                         'ExterQual', 'HeatingQC', 'CentralAir', '1stFlrSF', '2ndFlrSF', 'Functional', 'Fireplaces',
+                         'FireplaceQu', 'GarageArea', 'GarageQual', 'PavedDrive', 'WoodDeckSF', 'OpenPorchSF',
+                         'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea', 'PoolQC', 'SaleType', 'SaleCondition']]
+        indep_var = False
 
 
+    ###################
+    # Clean up variables
+    ###################
+    # Makes OverallQual non numeric
+    data_scrubbed['OverallQual'] = data_scrubbed['OverallQual'].map(
+        {10: 'Very Excellent', 9: 'Excellent', 8: 'Very Good', 7: 'Good', 6: 'Above Average', 5: 'Average',
+         4: 'Below Average', 3: 'Fair', 2: 'Poor', 1: 'Very Poor'})
+    quant_values = ['LotArea', 'MasVnrArea', '1stFlrSF', '2ndFlrSF', 'Fireplaces', 'GarageArea', 'WoodDeckSF',
+                    'OpenPorchSF', 'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea']  # Values to set to zero
+    if indep_var == True:
+        sensitive_quant_vals = ['YearRemodAdd', 'SalePrice']  # Values that can not be set to zero
+    else:
+        sensitive_quant_vals = ['YearRemodAdd']
 
+    # Handles NaN values for columns with continuous values
+    for col in quant_values:
+        data_scrubbed[col] = data_scrubbed[col].fillna(value=0)
+    data_scrubbed = data_scrubbed.dropna()
+
+    ###################
+    # Create quantitative variables
+    ###################
+    # Creates new feature which represents square footage of any type of deck combines ('WoodDeckSF', 'OpenPorchSF', 'EnclosedPorch', '3SsnPorch', 'ScreenPorch')
+    data_scrubbed['PorchVal'] = data_scrubbed.WoodDeckSF + data_scrubbed.OpenPorchSF + data_scrubbed.EnclosedPorch + \
+                                data_scrubbed['3SsnPorch'] + data_scrubbed.ScreenPorch
+    data_scrubbed = data_scrubbed.drop(
+        columns=['WoodDeckSF', 'OpenPorchSF', 'EnclosedPorch', '3SsnPorch', 'ScreenPorch'])
+
+    # Creates new feature which represents the square feet of the first and second floor, combines('1stFlrSF', '2ndFlrSF')
+    data_scrubbed['FloorSF'] = data_scrubbed['1stFlrSF'] + data_scrubbed['2ndFlrSF']
+    data_scrubbed = data_scrubbed.drop(columns=['1stFlrSF', '2ndFlrSF'])
+
+    # Creates a variable to measure age
+    data_scrubbed["Age"] = 2019 - data_scrubbed.YearRemodAdd
+    data_scrubbed = data_scrubbed.drop(columns='YearRemodAdd')
+
+    ###################
+    # Create interaction variables
+    ###################
+    # Creates interaction variable between MSZoning and LotArea
+    data_scrubbed = interact_cat_con(data_scrubbed, 'MSZoning', 'LotArea')
+
+    # Creates interaction variable between MasVnrType and MasVnrArea
+    data_scrubbed = interact_cat_con(data_scrubbed, 'MasVnrType', 'MasVnrArea')
+
+    # Creates interaction variable between FireplaceQu and Fireplaces
+    data_scrubbed = interact_cat_con(data_scrubbed, 'FireplaceQu', 'Fireplaces')
+
+    # Creates interaction variable between GarageQual and GarageArea
+    data_scrubbed = interact_cat_con(data_scrubbed, 'GarageQual', 'GarageArea')
+
+    # Creates interaction variable between PoolQC and PoolArea
+    data_scrubbed = interact_cat_con(data_scrubbed, 'PoolQC', 'PoolArea')
+
+    ###################
+    # Create categorical dummy variables
+    ###################
+    # Creates dummy variables for Utilities
+    data_scrubbed = make_categor_dum_var(data_scrubbed, 'Utilities')
+    # Creates dummies for OverallQual
+    data_scrubbed = make_categor_dum_var(data_scrubbed, 'OverallQual')
+    # Creates dummies for ExterQual
+    data_scrubbed = make_categor_dum_var(data_scrubbed, 'ExterQual')
+    # Creates dummies for HeatingQC
+    data_scrubbed = make_categor_dum_var(data_scrubbed, 'HeatingQC')
+    # Creates dummies for CentralAir
+    data_scrubbed = make_categor_dum_var(data_scrubbed, 'CentralAir')
+    # Creates dummies for Functional
+    data_scrubbed = make_categor_dum_var(data_scrubbed, 'Functional')
+    # Creates dummies for PavedDrive
+    data_scrubbed = make_categor_dum_var(data_scrubbed, 'PavedDrive')
+    # Creates dummies for SaleType
+    data_scrubbed = make_categor_dum_var(data_scrubbed, 'SaleType')
+    # Creates dummies for SaleCondition
+    data_scrubbed = make_categor_dum_var(data_scrubbed, 'SaleCondition')
+
+    return data_scrubbed
+
+
+
+
+# data_train = pd.read_csv('train-houses.csv')
+# data_clean_train = scrub_dataset(data_train)
 # Analyze.plotcormatrix(data_filtered)
-# print(data_filtered.columns)
+# print(data_clean_train.loc[:20, ['Family', 'Normal', 'N', 'WD']])
 # print(df.iloc[:,:].head())
 # print(data_filtered.MSZoning.unique())
 # print(data_filtered.loc[:,['PorchVal', 'FloorSF']].head())
+

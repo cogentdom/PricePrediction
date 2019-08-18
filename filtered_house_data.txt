@@ -40,16 +40,7 @@
 20 => YearRemodAdd: Remodel date (same as construction date if no remodeling or additions)
 
 
-22 => RoofMatl: Roof material
 
-       ClyTile	Clay or Tile
-       CompShg	Standard (Composite) Shingle
-       Membran	Membrane
-       Metal	Metal
-       Roll	Roll
-       Tar&Grv	Gravel & Tar
-       WdShake	Wood Shakes
-       WdShngl	Wood Shingles
 
 25 => MasVnrType: Masonry veneer type
 
@@ -69,21 +60,8 @@
        Fa	Fair
        Po	Poor
 
-28 => ExterCond: Evaluates the present condition of the material on the exterior
 
-       Ex	Excellent
-       Gd	Good
-       TA	Average/Typical
-       Fa	Fair
-       Po	Poor
-39 => Heating: Type of heating
 
-       Floor	Floor Furnace
-       GasA	Gas forced warm air furnace
-       GasW	Gas hot water or steam heat
-       Grav	Gravity furnace
-       OthW	Hot water or steam heat other than gas
-       Wall	Wall furnace
 
 40 => HeatingQC: Heating quality and condition
 
@@ -98,13 +76,6 @@
        N	No
        Y	Yes
 
-42 => Electrical: Electrical system
-
-       SBrkr	Standard Circuit Breakers & Romex
-       FuseA	Fuse Box over 60 AMP and all Romex wiring (Average)
-       FuseF	60 AMP Fuse Box and mostly Romex wiring (Fair)
-       FuseP	60 AMP Fuse Box and mostly knob & tube wiring (poor)
-       Mix	Mixed
 
 43 => 1stFlrSF: First Floor square feet
 
