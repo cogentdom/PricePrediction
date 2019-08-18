@@ -19,7 +19,26 @@
        180	PUD - MULTILEVEL - INCL SPLIT LEV/FOYER
        190	2 FAMILY CONVERSION - ALL STYLES AND AGES
 
+3 => LotFrontage: Linear feet of street connected to property
 
+5 => Street: Type of road access to property
+
+       Grvl	Gravel
+       Pave	Paved
+
+6 => Alley: Type of alley access to property
+
+       Grvl	Gravel
+       Pave	Paved
+       NA 	No alley access
+
+10 => LotConfig: Lot configuration
+
+       Inside	Inside lot
+       Corner	Corner lot
+       CulDSac	Cul-de-sac
+       FR2	Frontage on 2 sides of property
+       FR3	Frontage on 3 sides of property
 
 7 => LotShape: General shape of property
 
@@ -239,9 +258,15 @@
 
 
 
-
+45 => LowQualFinSF: Low quality finished square feet (all floors)
 
 46 =>GrLivArea: Above grade (ground) living area square feet
+
+47 => BsmtFullBath: Basement full bathrooms
+
+48 => BsmtHalfBath: Basement half bathrooms
+
+
 
 
 49 => FullBath: Full bathrooms above grade
@@ -286,7 +311,14 @@
 
 
 
+64 => GarageCond: Garage condition
 
+       Ex	Excellent
+       Gd	Good
+       TA	Typical/Average
+       Fa	Fair
+       Po	Poor
+       NA	No Garage
 
 
 73 => Fence: Fence quality
@@ -306,7 +338,7 @@
        TenC	Tennis Court
        NA	None
 
-
+75 => MiscVal: $Value of miscellaneous feature
 
 76 => MoSold: Month Sold (MM)
 

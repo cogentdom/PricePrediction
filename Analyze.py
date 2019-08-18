@@ -101,8 +101,8 @@ def plotScatterMatrix(df, plotSize, textSize):
 
 # testData = Data.readCSV('test-CarData.csv')
 # data = pd.read_csv('train-CarData.csv')
-data = pd.read_csv('train-houses.csv')
+# data = pd.read_csv('train-houses.csv')
 
 # plotPerColumnDistribution(data, 10, 5)
-plotcorrmatrix(data)
+# plotcorrmatrix(data)
 # plotScatterMatrix(data, 9, 10)

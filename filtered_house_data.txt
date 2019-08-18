@@ -10,20 +10,11 @@
        RP	Residential Low Density Park
        RM	Residential Medium Density
 
-3 => LotFrontage: Linear feet of street connected to property
+
 
 4 => LotArea: Lot size in square feet
 
-5 => Street: Type of road access to property
 
-       Grvl	Gravel
-       Pave	Paved
-
-6 => Alley: Type of alley access to property
-
-       Grvl	Gravel
-       Pave	Paved
-       NA 	No alley access
 
 9 => Utilities: Type of utilities available
 
@@ -32,28 +23,8 @@
        NoSeWa	Electricity and Gas Only
        ELO	Electricity only
 
-10 => LotConfig: Lot configuration
-
-       Inside	Inside lot
-       Corner	Corner lot
-       CulDSac	Cul-de-sac
-       FR2	Frontage on 2 sides of property
-       FR3	Frontage on 3 sides of property
 
 17 => OverallQual: Rates the overall material and finish of the house
-
-       10	Very Excellent
-       9	Excellent
-       8	Very Good
-       7	Good
-       6	Above Average
-       5	Average
-       4	Below Average
-       3	Fair
-       2	Poor
-       1	Very Poor
-
-18 => OverallCond: Rates the overall condition of the house
 
        10	Very Excellent
        9	Excellent
@@ -139,11 +110,7 @@
 
 44 => 2ndFlrSF: Second floor square feet
 
-45 => LowQualFinSF: Low quality finished square feet (all floors)
 
-47 => BsmtFullBath: Basement full bathrooms
-
-48 => BsmtHalfBath: Basement half bathrooms
 
 
 55 => Functional: Home functionality (Assume typical unless deductions are warranted)
@@ -179,14 +146,7 @@
        Po	Poor
        NA	No Garage
 
-64 => GarageCond: Garage condition
 
-       Ex	Excellent
-       Gd	Good
-       TA	Typical/Average
-       Fa	Fair
-       Po	Poor
-       NA	No Garage
 
 65 => PavedDrive: Paved driveway
 
@@ -214,7 +174,7 @@
        Fa	Fair
        NA	No Pool
 
-75 => MiscVal: $Value of miscellaneous feature
+
 
 78 => SaleType: Type of sale
 
