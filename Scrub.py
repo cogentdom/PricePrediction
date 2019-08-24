@@ -2,7 +2,7 @@ import csv
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 from Analyze import *
-
+scrub_list = list()
 def categTOnumeric(df_, features_):
     lb= LabelEncoder()
     for i in range(len(features_)):
@@ -23,10 +23,13 @@ def interact_cat_con(dataframe, cat_col, con_col):
 
 def make_categor_dum_var(dataframe, col_name):
     df = pd.get_dummies(dataframe[col_name])
+    tmpList = list(df.columns)
     dataframe = pd.concat([dataframe, df], axis='columns')
-    if len(df.columns) == len(dataframe[col_name]):
+    if (len(df.columns) == len(dataframe[col_name])) and (len(df.columns) >= 1):
         dataframe = dataframe.drop(columns = df.columns[0])
+        tmpList = tmpList.remove(0)
     dataframe = dataframe.drop(columns = col_name)
+    scrub_list.extend(tmpList)
     return dataframe
 
 def scrub_dataset(data_dirty):
