@@ -12,9 +12,6 @@ from Analyze import *
 
 
 
-
-
-
 data_full = pd.read_csv('train-houses.csv')
 data_full.replace([np.inf, -np.inf], np.nan)
 data_full.dropna()

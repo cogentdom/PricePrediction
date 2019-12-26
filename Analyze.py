@@ -3,6 +3,8 @@ from multidict import MultiDict
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from pandas.plotting._tools import _subplots
+
 import seaborn as sns
 
 # Clean Graph Code:
@@ -16,7 +18,7 @@ def plotPerColumnDistribution(df, nGraphShown, nGraphPerRow):
     nRow, nCol = df.shape
     columnNames = list(df)
     nGraphRow = (nCol + nGraphPerRow - 1) / nGraphPerRow
-    plt.figure(num = None, figsize = (3 * nGraphPerRow, 4 * nGraphRow), dpi = 100)
+    plt.figure(num = None, figsize = (3 * nGraphPerRow, 14 * nGraphRow), dpi = 200)
     for i in range(min(nCol, nGraphShown)):
         plt.subplot(nGraphRow, nGraphPerRow, i + 1, facecolor ='#ECE9E9')
         columnDf = df.iloc[:, i]
@@ -24,7 +26,7 @@ def plotPerColumnDistribution(df, nGraphShown, nGraphPerRow):
             valueCounts = columnDf.value_counts()
             valueCounts.plot.bar(color='grey', edgecolor='blue', linewidth=1.5)
         else:
-            columnDf.hist(color='grey', edgecolor='blue', linewidth=1.5)
+            columnDf.hist(edgecolor='blue', linewidth=1.5)
             columnDf
         plt.ylabel('counts')
         plt.xticks(rotation = 90)
@@ -99,10 +101,10 @@ def plotScatterMatrix(df, plotSize, textSize):
 
 
 
-# testData = Data.readCSV('test-CarData.csv')
+# data = Data.readCSV('test-CarData.csv')
 # data = pd.read_csv('train-CarData.csv')
-# data = pd.read_csv('train-houses.csv')
+data = pd.read_csv('train-houses.csv')
 
-# plotPerColumnDistribution(data, 10, 5)
+plotPerColumnDistribution(data, 10, 5)
 # plotcorrmatrix(data)
-# plotScatterMatrix(data, 9, 10)
+# plotScatterMatrix(data, 50, 5)
