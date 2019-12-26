@@ -1,7 +1,7 @@
 import csv
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
-from Analyze import *
+# from Analyze import *
 scrub_list = list()
 def categTOnumeric(df_, features_):
     lb= LabelEncoder()
@@ -49,7 +49,7 @@ def scrub_dataset(data_dirty):
                          'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea', 'PoolQC', 'SaleType', 'SaleCondition']]
         indep_var = False
 
-    plotcorrmatrix(data_scrubbed)
+
     ###################
     # Clean up variables
     ###################

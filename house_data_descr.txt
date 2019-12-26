@@ -1,6 +1,7 @@
 0 => Id
 
 1 => MSSubClass: Identifies the type of dwelling involved in the sale.
+['1-STORY 1946', '1-STORY 1945 & OLDER', '1-STORY W/FINISHED A', '1-1/2 STORY - UNFIN', '1-1/2 STORY FINIS', '2-STORY 1946 & NEWER', '2-STORY 1945 & OLDER', '2-1/2 STORY ALL AGES', 'SPLIT OR MULTI-LEVEL', 'SPLIT FOYER', 'DUPLEX - ALL STYLES AND AGES', '1-STORY PUD (Planned U', '1-1/2 STORY PUD - ALL ', '2-STORY PUD - 1946 &', 'PUD - MULTILEVEL - INCL SPLI', '2 FAMILY CONVERSION - ALL STY']
 
         20	1-STORY 1946 & NEWER ALL STYLES
         30	1-STORY 1945 & OLDER
@@ -20,7 +21,7 @@
        190	2 FAMILY CONVERSION - ALL STYLES AND AGES
 
 2 => MSZoning: Identifies the general zoning classification of the sale.
-
+['A', 'C', 'FV', 'I', 'RH', 'RL', 'RP', 'RM']
        A	Agriculture
        C	Commercial
        FV	Floating Village Residential
@@ -35,39 +36,39 @@
 4 => LotArea: Lot size in square feet
 
 5 => Street: Type of road access to property
-
+['Grvl', 'Pave']
        Grvl	Gravel
        Pave	Paved
 
 6 => Alley: Type of alley access to property
-
+['Grvl', 'Pave', 'NA']
        Grvl	Gravel
        Pave	Paved
        NA 	No alley access
 
 7 => LotShape: General shape of property
-
+['Reg', 'IR1', 'IR2', 'IR3']
        Reg	Regular
        IR1	Slightly irregular
        IR2	Moderately Irregular
        IR3	Irregular
 
 8 => LandContour: Flatness of the property
-
+['Lvl', 'Bnk', 'HLS', 'Low']
        Lvl	Near Flat/Level
        Bnk	Banked - Quick and significant rise from street grade to building
        HLS	Hillside - Significant slope from side to side
        Low	Depression
 
 9 => Utilities: Type of utilities available
-
+['AllPub', 'NoSewr', 'NoSeWa', 'ELO']
        AllPub	All public Utilities (E,G,W,& S)
        NoSewr	Electricity, Gas, and Water (Septic Tank)
        NoSeWa	Electricity and Gas Only
        ELO	Electricity only
 
 10 => LotConfig: Lot configuration
-
+['Inside', 'Corner', 'CulDSac', 'FR2', 'FR3']
        Inside	Inside lot
        Corner	Corner lot
        CulDSac	Cul-de-sac
@@ -75,13 +76,13 @@
        FR3	Frontage on 3 sides of property
 
 11 => LandSlope: Slope of property
-
+['Gtl', 'Mod', 'Sev']
        Gtl	Gentle slope
        Mod	Moderate Slope
        Sev	Severe Slope
 
 12 => Neighborhood: Physical locations within Ames city limits
-
+['Blmngtn', 'Blueste', 'BrDale', 'BrkSide', 'ClearCr', 'CollgCr', 'Crawfor', 'Edwards', 'Gilbert', 'IDOTRR', 'MeadowV', 'Mitchel', 'Names', 'NoRidge', 'NPkVill', 'NridgHt', 'NWAmes', 'OldTown', 'SWISU', 'Sawyer', 'SawyerW', 'Somerst', 'StoneBr', 'Timber', 'Veenker']
        Blmngtn	Bloomington Heights
        Blueste	Bluestem
        BrDale	Briardale
@@ -109,7 +110,7 @@
        Veenker	Veenker
 
 13 => Condition1: Proximity to various conditions
-
+['Artery', 'Feedr', 'Norm', 'RRNn', 'RRAn', 'PosN', 'PosA', 'RRNe', 'RRAe']
        Artery	Adjacent to arterial street
        Feedr	Adjacent to feeder street
        Norm	Normal
@@ -121,7 +122,7 @@
        RRAe	Adjacent to East-West Railroad
 
 14 => Condition2: Proximity to various conditions (if more than one is present)
-
+['Artery', 'Feedr', 'Norm', 'RRNn', 'RRAn', 'PosN', 'PosA', 'RRNe', 'RRAe']
        Artery	Adjacent to arterial street
        Feedr	Adjacent to feeder street
        Norm	Normal
@@ -133,7 +134,7 @@
        RRAe	Adjacent to East-West Railroad
 
 15 => BldgType: Type of dwelling
-
+['1Fam', '2FamCon', 'Duplx', 'TwnhsE', 'TwnhsI']
        1Fam	Single-family Detached
        2FmCon	Two-family Conversion; originally built as one-family dwelling
        Duplx	Duplex
@@ -141,7 +142,7 @@
        TwnhsI	Townhouse Inside Unit
 
 16 => HouseStyle: Style of dwelling
-
+['1Story', '1.5Fin', '1.5Unf', '2Story', '2.5Fin', '2.5Unf', 'SFoyer', 'SLvl']
        1Story	One story
        1.5Fin	One and one-half story: 2nd level finished
        1.5Unf	One and one-half story: 2nd level unfinished
@@ -152,7 +153,7 @@
        SLvl	Split Level
 
 17 => OverallQual: Rates the overall material and finish of the house
-
+['Very Poor', 'Poor', 'Fair', 'Below Average', 'Average', 'Above Average', 'Good', 'Very Good', 'Excellent', 'Very Excellent'], ordered=True
        10	Very Excellent
        9	Excellent
        8	Very Good
@@ -165,7 +166,7 @@
        1	Very Poor
 
 18 => OverallCond: Rates the overall condition of the house
-
+['Very Poor', 'Poor', 'Fair', 'Below Average', 'Average', 'Above Average', 'Good', 'Very Good', 'Excellent', 'Very Excellent'], ordered=True
        10	Very Excellent
        9	Excellent
        8	Very Good
